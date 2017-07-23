@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<title>アンケート</title>
+<script language="javascript">
+
+// チェックボックスに使用している名前
+chn1 = new Array(["ch1-1","ch1-2","ch1-3"],["ch2-1","ch2-2","ch2-3"],["ch3-1","ch3-2","ch3-3"]);
+chn = new Array(["ch0_1","ch0_2","ch0_3"],
+                ["ch1_1","ch1_2","ch1_3"],
+                ["ch2_1","ch2_2","ch2_3"]
+                );
+
+
+function chBxOff(self){
+
+  var chX;
+  var chY;
+
+  // 押されたボタンの列番号,行番号を求める
+  for(x=0;x<chn[0].length;x++){
+    for(y=0;y<chn.length;y++){
+      if(chn[y][x]==self.name){
+        chX=x;
+        chY=y;
+      }
+    }
+  }
+  
+  //行のチェックを全てクリア
+  for(x=0;x<chn[0].length;x++){
+    document.nForm.elements[chn[chY][x]].checked = false;
+  }
+  //列のチェックを全てクリア
+  for(y=0;y<chn.length;y++){
+  document.nForm.elements[chn[y][chX]].checked = false;
+  }
+}
+
+function check(self){
+  chBxOff(self);
+  self.checked = true;
+}
+
+</script>
+
+</head>
+<body>
+
+<p>ABCについて，1~3位で順位づけを行ってください</p>
+
+<form name="nForm">
+
+A:  <INPUT type="checkbox" name="ch0_1" onClick="check(ch0_1);">1位
+    <INPUT type="checkbox" name="ch0_2" onClick="check(ch0_2);">2位
+    <INPUT type="checkbox" name="ch0_3" onClick="check(ch0_3);">3位<br>
+
+B:  <INPUT type="checkbox" name="ch1_1" onClick="check(ch1_1);">1位
+    <INPUT type="checkbox" name="ch1_2" onClick="check(ch1_2);">2位
+    <INPUT type="checkbox" name="ch1_3" onClick="check(ch1_3);">3位<br>
+
+C:  <INPUT type="checkbox" name="ch2_1" onClick="check(ch2_1);">1位
+    <INPUT type="checkbox" name="ch2_2" onClick="check(ch2_2);">2位
+    <INPUT type="checkbox" name="ch2_3" onClick="check(ch2_3);">3位
+
+</form>
+</body>
+</html>
